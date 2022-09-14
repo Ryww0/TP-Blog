@@ -2,10 +2,12 @@
 
 namespace App\Controller\back;
 
+use App\Service\Input;
 use App\Service\Redirect;
 use App\Service\View;
 
 use App\Repository\ArticleRepository;
+use App\Validator\Validation;
 
 class ArticleController
 {
@@ -22,7 +24,7 @@ class ArticleController
     {
         return $this->render(
             SITE_NAME . ' - Articles',
-            'front/pages/homepage.php',
+            'back/admin.php',
             [
                 'articles' => $this->articleRepository->fetchAll()
             ]);
@@ -33,5 +35,20 @@ class ArticleController
         $article = $this->articleRepository->findById($params);
         $this->articleRepository->remove($article);
         Redirect::to('admin/admin.php');
+    }
+
+    public function UpdateById($params)
+    {
+        if (Input::exists()) {
+            $val = new Validation;
+            $val->name('titre')->value(Input::get('titre'))->pattern('words')->required();
+            $val->name('contenu')->value(Input::get('contenu'))->pattern('words')->required();
+            if ($val->isSuccess()) {
+                $article = $this->articleRepository->findById($params);
+                $article->setTitre(Input::get('titre'));
+                $this->articleRepository->update($article);
+                Redirect::to('admin/admin.php');
+            }
+        }
     }
 }

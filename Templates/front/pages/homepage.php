@@ -7,7 +7,6 @@
                 include 'cardArticle.php';
             }
             ?>
-
         </div>
     </div>
 </div>

@@ -3,8 +3,9 @@
 
 namespace App\Repository;
 
-use App\Model\User;
 use App\Service\Database;
+use PDO;
+use PDOException;
 
 class UserRepository extends Database implements IUserRepository
 {
@@ -34,6 +35,8 @@ class UserRepository extends Database implements IUserRepository
             $u = new User();
             $u->setId($user['id']);
             $u->setPseudo($user['pseudo']);
+            $u->setEmail($user['pseudo']);
+            $u->setPassword($user['pseudo']);
             $u->setStatus($user['status']);
             $users[] = $u;
         }
@@ -54,6 +57,8 @@ class UserRepository extends Database implements IUserRepository
         $user = new User();
         $user->setId($arr['id']);
         $user->setPseudo($arr['pseudo']);
+        $user->setEmail($arr['pseudo']);
+        $user->setPassword($arr['pseudo']);
         $user->setStatus($arr['status']);
         return $user;
     }
@@ -68,6 +73,7 @@ class UserRepository extends Database implements IUserRepository
         $stmt->bindValue(':pseudo', $user->getPseudo());
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':password', $user->getPassword());
+        $stmt->bindValue(':id', $user->getId());
         $stmt->execute();
         $stmt = null;
     }

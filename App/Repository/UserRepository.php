@@ -1,8 +1,8 @@
 <?php
 
-
 namespace App\Repository;
 
+use App\Model\User;
 use App\Service\Database;
 use PDO;
 use PDOException;
@@ -18,6 +18,7 @@ class UserRepository extends Database implements IUserRepository
         $stmt->bindValue(':status', $user->getStatus());
         $stmt->execute();
         $stmt = null;
+        return $this->findById($this->db->lastInsertId());
     }
 
     public function fetchAll(): array

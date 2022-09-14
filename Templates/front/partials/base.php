@@ -1,6 +1,6 @@
 <?php
 
-//use App\Service\Session;
+use App\Service\Session;
 
 ?>
 

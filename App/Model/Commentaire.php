@@ -1,10 +1,14 @@
 <?php
 
+namespace App\Model;
+
+use DateTime;
+
 class Comment
 {
     private int $id_comentaire;
     private string $contenu;
-    private datetime $date_created;
+    private DateTime $date_created;
     private int $id_user;
     private int $id_article;
 

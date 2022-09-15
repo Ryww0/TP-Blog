@@ -11,6 +11,7 @@ Autoloader::$folderList =
     [
         "App/Model/",
         "App/Controller/front/",
+        "App/Controller/back/",
         "App/Repository/",
         "App/Service/",
         "App/Form/",
@@ -24,8 +25,15 @@ try {
 
     $router = new Router($_GET['url']);
 
-    $router->get('/', function (){
+    // HOME
+    $router->get('/', function () {
         echo (new HomeController)->invoke();
+    });
+
+    // ARTICLE
+    $router->get('/article/:id', function ($id) {
+        var_dump($id);
+        echo (new \App\Controller\front\ArticleController())->show($id);
     });
 
     $router->run();

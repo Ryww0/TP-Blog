@@ -21,12 +21,12 @@ class ArticleController
     {
         $article = $this->articleRepository->findById($id_article);
         return $this->render(
-            SITE_NAME . ' - ' . $article->getTitle(),
+            SITE_NAME . ' - ' . $article->getTitre(),
             'front/pages/article.php',
             [
                 'article' => $article,
                 'commentaires' => $this->commentaireRepository->fectchAllCommentsByArticleId(),
-                'formComment' => FormCommentaire::builCreateComment()
+//                'formComment' => FormCommentaire::builCreateComment()
             ]);
     }
 }

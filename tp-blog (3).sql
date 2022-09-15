@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
   `id_commentaire` int(11) NOT NULL AUTO_INCREMENT,
   `contenue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_creation` date NOT NULL,
+  `date_creation` date,
   `id_user` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,
   PRIMARY KEY (`id_commentaire`)

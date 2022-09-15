@@ -35,6 +35,10 @@ try {
         echo (new \App\Controller\front\ArticleController())->show($id);
     });
 
+    $router->post('/commentaire/add/:id', function ($id) {
+        echo (new \App\Controller\front\CommentaireController())->addComment($id);
+    });
+
     $router->run();
 } catch (Exception $e) {
     die('Error: ' . $e);

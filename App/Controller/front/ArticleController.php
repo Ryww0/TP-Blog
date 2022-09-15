@@ -2,6 +2,7 @@
 
 namespace App\Controller\front;
 
+use App\Form\FormCommentaire;
 use App\Repository\CommentaireRepository;
 use App\Service\View;
 
@@ -23,14 +24,14 @@ class ArticleController
     public function show($id_article)
     {
         $article = $this->articleRepository->findById($id_article);
-        $commentaires = $this->commentaireRepository->findById($id_article);
+        $commentaires = $this->commentaireRepository->fecthAllByIdArticle($id_article);
         return $this->render(
             SITE_NAME . ' - ' . $article->getTitre(),
             'front/pages/article.php',
             [
                 'article' => $article,
                 'commentaires' => $commentaires,
-//                'formComment' => FormCommentaire::builCreateComment()
+                'formComment' => FormCommentaire::buildAddCommentaire($article)
             ]);
     }
 }

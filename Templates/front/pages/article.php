@@ -11,4 +11,7 @@
         <p><?= $commentaire->getContenu() ?></p>
         <?php } ?>
     </div>
+    <div>
+        <?= $formComment->create();?>
+    </div>
 </div>

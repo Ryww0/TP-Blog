@@ -16,7 +16,7 @@ class Comment
     {
         $this->id_user = $id_user;
         $this->id_article = $id_article;
-        $this->date_created = new datetime();
+        $this->date_created = new DateTime();
     }
 
     /**
@@ -64,7 +64,7 @@ class Comment
      */
     public function getDateCreated(): string
     {
-        return $this->date_creation->format('Y-m-d');
+        return $this->date_created->format('Y-m-d');
     }
 
 

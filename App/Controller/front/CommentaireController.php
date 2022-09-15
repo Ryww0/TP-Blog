@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\back;
+namespace App\Controller\front;
 
 use App\Service\Input;
 use App\Service\Redirect;
@@ -23,30 +23,21 @@ class CommentaireController
     }
 
     // TODO
-    public function addComment($params)
+    public function addComment($id_article)
     {
         if (Input::exists()) {
-            var_dump($_POST);
             $val = new Validation;
             $val->name('contenu')->value(Input::get('contenu'))->pattern('words')->required();
             $val->name('id_user')->value(Input::get('id_user'))->pattern('int')->required();
-            $val->name('id_article')->value(Input::get('id_article'))->pattern('int')->required();
             if ($val->isSuccess()) {
+                $contenu = Input::get('contenu');
                 $idUser = Input::get('id_user');
-                $idArticle = Input::get('id_article');
-                $comment = new Comment($idUser,$idArticle);
+                $comment = new Comment($idUser,$id_article);
+                $comment->setContenu($contenu);
                 $this->commentaireRepository->add($comment);
-                Redirect::to('back/admin.php');
+                Redirect::to('/article/'. $id_article);
             }
-        } else {
-            return $this->render(
-                SITE_NAME . ' - Add comm: ',
-                'back/admin.php',
-                [
-                    'formComment' => FormComment::buildCreateForm(),
-                ]);
         }
-
     }
 
     public function deleteCommentById($params)

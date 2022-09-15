@@ -9,17 +9,16 @@ use App\Model\Comment;
 
 class CommentaireRepository extends Database implements ICommentaireRepository
 {
-    public function add(Comment $commentaire): Comment
+    public function add(Comment $commentaire) : void
     {
-        $stmt = $this->db->prepare("INSERT INTO commentaire (contenu, date_created, id_user, id_article)
-                                          VALUES (:contenu, :date_created, :id_user, :id_article)");
-        $stmt->bindValue(':contenu', $commentaire->getContenu());
-        $stmt->bindValue(':date_created', $commentaire->getDateCreated());
+        $stmt = $this->db->prepare("INSERT INTO commentaire (contenue, date_creation, id_user, id_article)
+                                          VALUES (:contenue, :date_creation, :id_user, :id_article)");
+        $stmt->bindValue(':contenue', $commentaire->getContenu());
+        $stmt->bindValue(':date_creation', $commentaire->getDateCreated());
         $stmt->bindValue(':id_user', $commentaire->getIdUser());
         $stmt->bindValue(':id_article', $commentaire->getIdArticle());
         $stmt->execute();
         $stmt = null;
-        return $this->findById($this->db->lastInsertId());
     }
 
     public function  fetchAll(): array
@@ -41,10 +40,10 @@ class CommentaireRepository extends Database implements ICommentaireRepository
         return $commentaires;
     }
 
-    public function findById($params): array
+    public function fecthAllByIdArticle($params): array
     {
-        $stmt = $this->db->prepare("SELECT * FROM commentaire WHERE id_article = :id");
-        $stmt->bindValue(':id', $params);
+        $stmt = $this->db->prepare("SELECT * FROM commentaire WHERE id_article = :id_article");
+        $stmt->bindValue(':id_article', $params);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $arr = $stmt->fetchAll();

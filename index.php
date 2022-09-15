@@ -1,7 +1,6 @@
 <?php
 
-
-require_once 'config/config.php';
+require_once 'Config/config.php';
 require_once 'Autoloader.php';
 
 use App\Autoloader;

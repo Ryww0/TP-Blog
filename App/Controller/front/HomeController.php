@@ -3,7 +3,6 @@
 namespace App\Controller\front;
 
 use App\Service\View;
-
 use App\Repository\ArticleRepository;
 
 class HomeController

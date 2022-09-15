@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Form;
 
 use App\Service\Form;
+
 use App\Model\Article;
 
 
@@ -15,13 +15,13 @@ class FormArticle
         $form->debutForm('post', URL_ROOT . 'add')
 
             ->ajoutLabelFor('auteur', 'auteur')
-            ->ajoutInput('auteur', 'auteur', ['id' => 'auteur', 'class' => 'form-control'])
+            ->ajoutInput('text', 'auteur', ['id' => 'user', 'class' => 'form-control'])
 
             ->ajoutLabelFor('titre', 'titre')
-            ->ajoutInput('titre', 'titre', ['id' => 'titre', 'class' => 'form-control'])
+            ->ajoutInput('text', 'titre', ['id' => 'titre', 'class' => 'form-control'])
 
             ->ajoutLabelFor('contenu', 'contenu')
-            ->ajoutInput('contenu', 'contenu', ['id' => 'contenu', 'class' => 'form-control'])
+            ->ajoutInput('text', 'contenu', ['id' => 'contenu', 'class' => 'form-control'])
 
             ->ajoutBouton('Ajouter un article', ['class' => 'btn btn-primary'])
             ->finForm();
@@ -34,15 +34,15 @@ class FormArticle
         $form->debutForm('post', URL_ROOT . 'admin/article/update/' . $article->getIdArticle() )
 
             ->ajoutLabelFor('auteur', 'auteur')
-            ->ajoutInput('auteur', 'auteur', ['id' => 'auteur', 'class' => 'form-control'])
+            ->ajoutInput('text', 'auteur', ['id' => 'auteur', 'class' => 'form-control'])
 
             ->ajoutLabelFor('titre', 'titre')
-            ->ajoutInput('titre', 'titre', ['id' => 'titre', 'class' => 'form-control'])
+            ->ajoutInput('text', 'titre', ['id' => 'titre', 'class' => 'form-control'])
 
             ->ajoutLabelFor('contenu', 'contenu')
-            ->ajoutInput('contenu', 'contenu', ['id' => 'contenu', 'class' => 'form-control'])
+            ->ajoutInput('text', 'contenu', ['id' => 'contenu', 'class' => 'form-control'])
 
-            ->ajoutBouton('Ajouter un article', ['class' => 'btn btn-primary'])
+            ->ajoutBouton('Mise a jour de l\'article', ['class' => 'btn btn-primary'])
             ->finForm();
         return $form;
     }

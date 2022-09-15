@@ -48,7 +48,7 @@ class ArticleRepository extends Database implements IArticleRepository
 
     public function findById($params): Article
     {
-        $stmt = $this->db->prepare("SELECT * FROM article WHERE id = :id");
+        $stmt = $this->db->prepare("SELECT * FROM article WHERE id_article = :id");
         $stmt->bindValue(':id', $params);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -56,14 +56,11 @@ class ArticleRepository extends Database implements IArticleRepository
         if (!$arr) {
             throw new PDOException("Could not find id in database");
         }
-        $article = new Article();
-        $article->setId($arr['id']);
-        $article->setTitre($arr['titre']);
-        $article->setImage($arr['image']);
+        $article = new Article($arr['titre'], $arr['image'], $arr['id_user']);
+        $article->setId($arr['id_article']);
         $article->setContenu($arr['contenu']);
-        $article->setDateCreated($arr['date_creation']);
-        $article->setDateUpdated($arr['date_modif']);
-        $article->setIdUser($arr['Id_user']);
+        //$article->setDateCreated($arr['date_creation']);
+        // $article->setDateUpdated($arr['date_modif']);
         return $article;
     }
 
@@ -110,7 +107,7 @@ class ArticleRepository extends Database implements IArticleRepository
 
     public function remove(Article $article)
     {
-        $stmt = $this->db->prepare("DELETE FROM article WHERE id = :id");
+        $stmt = $this->db->prepare("DELETE FROM article WHERE id_article = :id");
         $stmt->bindValue(':id', $article->getIdArticle());
         $stmt->execute();
         $stmt = null;

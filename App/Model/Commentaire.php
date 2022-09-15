@@ -1,8 +1,12 @@
 <?php
 
+namespace App\Model;
+
+use DateTime;
+
 class Comment
 {
-    private int $id_comentaire;
+    private int $id_commentaire;
     private string $contenu;
     private datetime $date_created;
     private int $id_user;
@@ -14,7 +18,6 @@ class Comment
         $this->id_article = $id_article;
         $this->date_created = new datetime();
     }
-
 
     /**
      * @return string
@@ -38,6 +41,14 @@ class Comment
     public function getIdArticle(): int
     {
         return $this->id_article;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCommentaire(): int
+    {
+        return $this->id_commentaire;
     }
 
     /**

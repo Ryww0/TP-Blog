@@ -107,7 +107,7 @@ class ArticleRepository extends Database implements IArticleRepository
 
     public function remove(Article $article)
     {
-        $stmt = $this->db->prepare("DELETE FROM article WHERE id = :id");
+        $stmt = $this->db->prepare("DELETE FROM article WHERE id_article = :id");
         $stmt->bindValue(':id', $article->getIdArticle());
         $stmt->execute();
         $stmt = null;

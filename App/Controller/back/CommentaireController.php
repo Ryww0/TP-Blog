@@ -2,9 +2,12 @@
 
 namespace App\Controller\back;
 
+use App\Service\Input;
+use App\Service\Redirect;
 use App\Service\View;
 
 use App\Repository\CommentaireRepository;
+use App\Validator\Validation;
 
 class CommentaireController
 {
@@ -21,7 +24,7 @@ class CommentaireController
     {
         return $this->render(
             SITE_NAME . ' - Articles',
-            'front/pages/article.php',
+            'back/admin.php',
             [
                 'commentaires' => $this->commentaireRepository->findById($params)
             ]);

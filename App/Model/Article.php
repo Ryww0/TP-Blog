@@ -4,7 +4,8 @@ namespace App\Model;
 
 use DateTime;
 
-class Article {
+class Article
+{
     private int $id_article;
     private string $titre;
     private string $image;
@@ -15,10 +16,10 @@ class Article {
 
     public function __construct(string $titre, string $image, int $id_user)
     {
-      $this->titre = $titre;
-      $this->image = $image;
-      $this->id_user = $id_user;
-      $this->date_creation = new DateTime();
+        $this->titre = $titre;
+        $this->image = $image;
+        $this->id_user = $id_user;
+        $this->date_creation = new DateTime();
     }
 
     /**
@@ -29,9 +30,11 @@ class Article {
         return $this->id_article;
     }
 
-    public function setId($article) {
+    public function setId($article)
+    {
         $this->id_article = $article;
     }
+
     /**
      * @return string
      */

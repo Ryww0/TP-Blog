@@ -1,1 +1,29 @@
 <?php
+
+namespace App\Controller\back;
+
+use App\Service\View;
+
+use App\Repository\CommentaireRepository;
+
+class CommentaireController
+{
+    use View;
+
+    private CommentaireRepository $commentaireRepository;
+
+    public function __construct()
+    {
+        $this->commentaireRepository = new CommentaireRepository();
+    }
+
+    public function invoke($params)
+    {
+        return $this->render(
+            SITE_NAME . ' - Articles',
+            'front/pages/article.php',
+            [
+                'commentaires' => $this->commentaireRepository->findById($params)
+            ]);
+    }
+}

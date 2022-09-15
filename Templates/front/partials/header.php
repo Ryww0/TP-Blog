@@ -12,5 +12,5 @@ use App\Service\Session;
         <button type="button" class="btn btn-primary">Connexion</button>
         <button type="button" class="btn btn-success">Inscription</button>
     </nav>
-    <?php Session::showMessage(); ?>
+    <?php // Session::showMessage(); ?>
 </header>

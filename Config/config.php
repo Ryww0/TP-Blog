@@ -1,11 +1,11 @@
 <?php
 
 //nom du site
-const SITE_NAME = 'Rencontres sportives';
+const SITE_NAME = 'Blog';
 
 //App Root
 define("APP_ROOT", dirname(__FILE__, 2));
-const URL_ROOT = '/TP-citation/';
+const URL_ROOT = '/TP-Blog/';
 const URL_SUBFOLDER = '';
 
 //DB Params

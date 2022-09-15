@@ -1,11 +1,15 @@
 <?php
 
+namespace App\Model;
+
+use DateTime;
+
 class Article {
     private int $id_article;
     private string $titre;
     private string $image;
     private string $contenu;
-    private datetime $date_created;
+    private DateTime $date_created;
     private string $date_updated;
     private int $id_user;
 
@@ -25,6 +29,9 @@ class Article {
         return $this->id_article;
     }
 
+    public function setId($article) {
+        $this->id_article = $article;
+    }
     /**
      * @return string
      */

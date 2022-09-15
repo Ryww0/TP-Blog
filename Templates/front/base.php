@@ -16,8 +16,8 @@ use App\Service\Session;
 </head>
 
 <body>
-<?php include "partials/base/header.php"; ?>
+<?php include "partials/header.php"; ?>
 <?= $content ?>
-<?php include "partials/base/footer.php"; ?>
+<?php include "partials/footer.php"; ?>
 </body>
 </html>

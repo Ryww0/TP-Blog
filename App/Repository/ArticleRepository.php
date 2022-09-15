@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
-use App\Model\Article;
+use PDO;
+use PDOException;
 use App\Service\Database;
+use App\Model\Article;
 
 class ArticleRepository extends Database implements IArticleRepository
 {
@@ -14,9 +16,9 @@ class ArticleRepository extends Database implements IArticleRepository
         $stmt->bindValue(':titre', $article->getTitre());
         $stmt->bindValue(':image', $article->getImage());
         $stmt->bindValue(':contenu', $article->getContenu());
-        $stmt->bindValue(':date_creation', $article->getDate_creation());
-        $stmt->bindValue(':date_modif', $article->getDate_modif());
-        $stmt->bindValue(':id_user', $article->getId_user());
+        $stmt->bindValue(':date_creation', $article->getDateCreated());
+        $stmt->bindValue(':date_modif', $article->getDateUpdated());
+        $stmt->bindValue(':id_user', $article->getIdUser());
         $stmt->execute();
         $stmt = null;
         return $this->findById($this->db->lastInsertId());
@@ -34,14 +36,11 @@ class ArticleRepository extends Database implements IArticleRepository
         $stmt = null;
         $articles = [];
         foreach ($arr as $article) {
-            $a = new Article();
-            $a->setId($arr['id']);
-            $a->setTitre($arr['titre']);
-            $a->setImage($arr['image']);
-            $a->setContenu($arr['contenu']);
-            $a->setDate_creation($arr['date_creation']);
-            $a->setDate_modif($arr['date_modif']);
-            $a->setId_user($arr['Id_user']);
+            $a = new Article($article['titre'], $article['image'], $article['id_user']);
+            $a->setId($article['id_article']);
+            $a->setContenu($article['contenu']);
+//            $a->getDateCreated($article['date_creation']);
+//            $a->getDateUpdated($article['date_modif']);
             $articles[] = $a;
         }
         return $articles;
@@ -62,9 +61,9 @@ class ArticleRepository extends Database implements IArticleRepository
         $article->setTitre($arr['titre']);
         $article->setImage($arr['image']);
         $article->setContenu($arr['contenu']);
-        $article->setDate_creation($arr['date_creation']);
-        $article->setDate_modif($arr['date_modif']);
-        $article->setId_user($arr['Id_user']);
+        $article->setDateCreated($arr['date_creation']);
+        $article->setDateUpdated($arr['date_modif']);
+        $article->setIdUser($arr['Id_user']);
         return $article;
     }
 
@@ -84,9 +83,9 @@ class ArticleRepository extends Database implements IArticleRepository
         $article->setTitre($arr['titre']);
         $article->setImage($arr['image']);
         $article->setContenu($arr['contenu']);
-        $article->setDate_creation($arr['date_creation']);
-        $article->setDate_modif($arr['date_modif']);
-        $article->setId_user($arr['Id_user']);
+        $article->setDateCreated($arr['date_creation']);
+        $article->setDateUpdated($arr['date_modif']);
+        $article->setIdUser($arr['Id_user']);
         return $article;
     }
 
@@ -99,12 +98,12 @@ class ArticleRepository extends Database implements IArticleRepository
                                               date_modif = :date_modif,
                                               id_user = :id_user
                                           WHERE id = :id");
-        $stmt->bindValue(':titre', $article->getNom());
-        $stmt->bindValue(':image', $article->getArticle());
+        $stmt->bindValue(':titre', $article->getTitre());
+        $stmt->bindValue(':image', $article->getImage());
         $stmt->bindValue(':contenu', $article->getContenu());
-        $stmt->bindValue(':date_modif', $article->getDate_modif());
-        $stmt->bindValue(':id_user', $article->getId_user());
-        $stmt->bindValue(':id', $article->getId());
+        $stmt->bindValue(':date_modif', $article->getDateUpdated());
+        $stmt->bindValue(':id_user', $article->getIdUser());
+        $stmt->bindValue(':id', $article->getIdArticle());
         $stmt->execute();
         $stmt = null;
     }
@@ -112,7 +111,7 @@ class ArticleRepository extends Database implements IArticleRepository
     public function remove(Article $article)
     {
         $stmt = $this->db->prepare("DELETE FROM article WHERE id = :id");
-        $stmt->bindValue(':id', $article->getId());
+        $stmt->bindValue(':id', $article->getIdArticle());
         $stmt->execute();
         $stmt = null;
     }

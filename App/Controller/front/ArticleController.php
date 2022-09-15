@@ -6,7 +6,7 @@ use App\Service\View;
 
 use App\Repository\ArticleRepository;
 
-class HomeController
+class ArticleController
 {
     use View;
 

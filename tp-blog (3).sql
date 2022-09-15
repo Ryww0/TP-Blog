@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
   `titre` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `contenu` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_creation` date NOT NULL,
   `date_modif` date DEFAULT NULL,
@@ -43,11 +43,11 @@ CREATE TABLE IF NOT EXISTS `article` (
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id_article`, `titre`, `image`, `contenu`, `date_creation`, `date_modif`, `id_user`) VALUES
-(1, 'un article', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-14', NULL, 2),
-(2, 'un article 2', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-13', NULL, 2),
-(3, 'un article 3', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-13', NULL, 2),
-(4, 'un article 4', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-13', NULL, 2);
+    INSERT INTO `article` (`id_article`, `titre`, `image`, `contenu`, `date_creation`, `date_modif`, `id_user`) VALUES
+    (1, 'un article', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-14', NULL, 2),
+    (2, 'un article 2', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-13', NULL, 2),
+    (3, 'un article 3', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-13', NULL, 2),
+    (4, 'un article 4', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '2022-09-13', NULL, 2);
 
 -- --------------------------------------------------------
 

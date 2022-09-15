@@ -4,7 +4,7 @@
             <h1>Tout les articles :</h1>
             <?php
             foreach ($articles as $key => $article) {
-                include 'cardArticle.php';
+                include APP_ROOT . '/Templates/front/partials/cardArticle.php';
             }
             ?>
         </div>

@@ -23,7 +23,7 @@ class CommentaireController
     }
 
     // TODO
-    public function addCommentaire($params)
+    public function addComment($params)
     {
         if (Input::exists()) {
             var_dump($_POST);
@@ -49,7 +49,7 @@ class CommentaireController
 
     }
 
-    public function deleteCommentaire($params)
+    public function deleteCommentById($params)
     {
         $commentaire = $this->commentaireRepository->findById($params);
         $this->commentaireRepository->remove($commentaire);

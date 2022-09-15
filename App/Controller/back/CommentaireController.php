@@ -17,7 +17,7 @@ class CommentaireController
         $this->commentaireRepository = new CommentaireRepository();
     }
 
-    public function invoke($params)
+    public function showCommentsByArticleId($params)
     {
         return $this->render(
             SITE_NAME . ' - Articles',
@@ -27,7 +27,7 @@ class CommentaireController
             ]);
     }
 
-    public function deleteCommentaire($params)
+    public function deleteCommentById($params)
     {
         $commentaire = $this->commentaireRepository->findById($params);
         $this->commentaireRepository->remove($commentaire);

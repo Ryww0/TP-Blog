@@ -26,4 +26,11 @@ class CommentaireController
                 'commentaires' => $this->commentaireRepository->findById($params)
             ]);
     }
+
+    public function deleteCommentaire($params)
+    {
+        $commentaire = $this->commentaireRepository->findById($params);
+        $this->commentaireRepository->remove($commentaire);
+        Redirect::to('back/admin.php');
+    }
 }

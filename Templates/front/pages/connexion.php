@@ -1,1 +1,3 @@
 <?php
+
+$formConnexion->createForm();

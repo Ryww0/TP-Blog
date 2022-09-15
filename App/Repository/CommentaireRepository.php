@@ -9,7 +9,7 @@ use App\Model\Comment;
 
 class CommentaireRepository extends Database implements ICommentaireRepository
 {
-    public function add(Commentaire $commentaire): Commentaire
+    public function add(Comment $commentaire): Comment
     {
         $stmt = $this->db->prepare("INSERT INTO commentaire (contenu, date_created, id_user, id_article)
                                           VALUES (:contenu, :date_created, :id_user, :id_article)");
@@ -41,23 +41,27 @@ class CommentaireRepository extends Database implements ICommentaireRepository
         return $commentaires;
     }
 
-    public function findById($params): Commentaire
+    public function findById($params): Comment
     {
-        $stmt = $this->db->prepare("SELECT * FROM commentaire WHERE id_commentaire = :id");
+        $stmt = $this->db->prepare("SELECT * FROM commentaire WHERE id_article = :id");
         $stmt->bindValue(':id', $params);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $arr = $stmt->fetch();
+        $arr = $stmt->fetchAll();
         if (!$arr) {
             throw new PDOException("Could not find id in database");
         }
         $stmt = null;
-        $commentaire = new Comment($arr['id_user'], $arr['id_article']);
-        $commentaire->setContenu($arr['contenu']);
-        return $commentaire;
+        $commentaires = [];
+        foreach ($arr as $commentaire) {
+            $c = new Comment($commentaire['id_user'], $commentaire['id_article']);
+            $c->setContenu($commentaire['contenue']);
+            $commentaires[] = $c;
+        }
+        return $commentaires;
     }
 
-    public function remove(Commentaire $commentaire)
+    public function remove(Comment $commentaire)
     {
         $stmt = $this->db->prepare("DELETE FROM commentaire WHERE id_commentaire = :id");
         $stmt->bindValue(':id', $commentaire->getIdCommentaire());

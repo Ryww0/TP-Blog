@@ -5,11 +5,11 @@ use App\Model\Comment;
 
 interface ICommentaireRepository
 {
-    public function add(Commentaire $commentaire): Commentaire;
+    public function add(Comment $commentaire): Comment;
 
     public function fetchAll(): array;
 
-    public function findById($params): Commentaire;
+    public function findById($params): Comment;
 
-    public function remove(Commentaire $commentaire);
+    public function remove(Comment $commentaire);
 }

@@ -5,10 +5,10 @@
     <p><?= $article->getContenu() ?></p>
 </div>
 <h4>Commentaire :</h4>
-<?php
-    /*
 <div class="container-fluid>">
     <div>
+        <?php foreach ($commentaires as $key => $commentaire) { ?>
         <p><?= $commentaire->getContenu() ?></p>
+        <?php } ?>
     </div>
 </div>

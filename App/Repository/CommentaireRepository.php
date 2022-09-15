@@ -41,7 +41,7 @@ class CommentaireRepository extends Database implements ICommentaireRepository
         return $commentaires;
     }
 
-    public function findById($params): Comment
+    public function findById($params): array
     {
         $stmt = $this->db->prepare("SELECT * FROM commentaire WHERE id_article = :id");
         $stmt->bindValue(':id', $params);

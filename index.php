@@ -32,7 +32,6 @@ try {
 
     // ARTICLE
     $router->get('/article/:id', function ($id) {
-        var_dump($id);
         echo (new \App\Controller\front\ArticleController())->show($id);
     });
 

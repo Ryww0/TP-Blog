@@ -9,7 +9,7 @@ interface ICommentaireRepository
 
     public function fetchAll(): array;
 
-    public function findById($params): Comment;
+    public function findById($params): array;
 
     public function remove(Comment $commentaire);
 }

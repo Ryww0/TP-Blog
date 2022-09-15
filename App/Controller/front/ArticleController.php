@@ -17,13 +17,13 @@ class ArticleController
     public function __construct()
     {
         $this->articleRepository = new ArticleRepository();
+        $this->commentaireRepository = new CommentaireRepository();
     }
 
     public function show($id_article)
     {
         $article = $this->articleRepository->findById($id_article);
         $commentaires = $this->commentaireRepository->findById($id_article);
-        var_dump('okokok');
         return $this->render(
             SITE_NAME . ' - ' . $article->getTitre(),
             'front/pages/article.php',

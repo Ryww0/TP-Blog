@@ -4,7 +4,7 @@ namespace App\Service;
 
 trait View
 {
-    function render($title = '', $file, $variables = [], $layout = APP_ROOT . '/Templates/bases.php')
+    function render($title = '', $file, $variables = [], $layout = APP_ROOT . '/Templates/front/partials/bases.php')
     {
         $content = $this->renderContent($file, $variables);
         ob_start();
